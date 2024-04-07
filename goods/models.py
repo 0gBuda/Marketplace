@@ -8,7 +8,7 @@ class Categories(models.Model):
         db_table = 'category'
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-
+        ordering = ("id",)
 
 
     def __str__(self):
