@@ -1,7 +1,9 @@
 {% load static %}
 {% load carts_tags %}
 
-{% user_carts request as carts %}
+{% if user.is_authenticated  %}
+	{% user_carts request as carts %}
+{% endif %}
 
 
 
@@ -29,11 +31,6 @@
                         {% include "carts/includes/included_cart.html" %}
                     <!-- Закончилась разметка корзины -->
                 </div>
-                {% if carts %}
-                    <a class="btn btn-dark" href="{% static "orders/create_order.html" %}">
-                        Оформить заказ
-                    </a>
-                {% endif %}
             </div>
         </div>
     </div>

@@ -44,10 +44,16 @@
                                 <p class="card-text">Цена: <strong>{{ product.sell_price }}</strong></p>
                                 <h5 class="card-title">{{ product.name }}</h5>
                                 <p class="card-text">{{ product.descriptions }}</p>
-                                <a href="{% if user.is_authenticated %}{% url "cart:cart_add" %}{% else %}{% url "users:login" %}{% endif %}" class="btn btn-dark add-to-cart"
+                            {% if user.is_authenticated %}
+                                <a href="{% url "cart:cart_add" %}" class="btn btn-dark add-to-cart"
                                 data-product-id="{{ product.id }}">
                                 {% csrf_token %}
                                 Добавить в корзину</a>
+                            {% else %}
+                                <a href="{% url "users:login" %}" class="btn btn-danger">
+                                Добавить в корзину
+                                </a>
+                            {% endif %}
                             </div>
                         </div>
                     </div>
