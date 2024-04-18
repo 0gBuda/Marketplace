@@ -63,3 +63,7 @@ def profile(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('users:login'))
+
+
+def user_cart(request):
+    return render(request, 'users/user-cart.html')
