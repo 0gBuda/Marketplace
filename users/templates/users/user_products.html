@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Товары пользователя {{ user.username }}</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mb-4" style="width: 100%;">
+                {% if product.image %}
+            	    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                {% else %}
+                    <img src="{% static "deps/images/Not found image.png" %}" class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.descriptions|truncatewords:20 }}</p>
+                    <p class="card-text mt-auto"><strong>Цена:</strong> {{ product.price }} $</p>
+                    <p class="card-text"><strong>Количество:</strong> {{ product.quantity }}</p>
+                    <p class="card-text"><strong>Категория:</strong> {{ product.category }}</p>
+                    <a href="{% url 'goods:product' product.id %}" class="btn btn-primary mt-2">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
